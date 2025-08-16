@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KickCart - My Account</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <!--        <link rel="stylesheet" href="assets\\css\\style.css" />-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+    </style>
+</head>
+<style>
+    .custom-border {
+        background: linear-gradient(to top, #e0eaf3 30%, #cfcef3) padding-box,
+            linear-gradient(to left, #cfcef3, #e0eaf3) border-box;
+        border-radius: 20px;
+        border: 5px solid transparent;
+        margin: 0;
+    }
+</style>
+
+<body style="height: 100%;" onload="loadHeader();">
+    <nav class="navbar navbar-expand-lg px-4">
+        <div class="container-fluid custom-border p-3">
+            <a class="navbar-brand mx-2 text-info" href="#">GlassTech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarOffcanvasLg"
+                aria-controls="navbarOffcanvasLg" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="navbarOffcanvasLg"
+                aria-labelledby="navbarOffcanvasLgLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item me-2">
+                            <a class="nav-link active" href="#">Smartphones & Tablets</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">Laptops</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">Computer & Accessories</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">Printers</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">Headphones & Speakers</a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">Wearables</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1
+                         1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                                </svg>
+                            </a>
+                        </li>
+                        <!-- <li class="nav-item">
+                <a class="nav-link" href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        class="bi bi-house" viewBox="0 0 16 16">
+                        
+                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5
+                         0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13
+                          7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                    </svg>
+                </a>
+            </li> -->
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 
+                        10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
+                                </svg>
+                            </a>
+                        </li>
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-heart" viewBox="0 0 16 16">
+                                    <path
+                                        d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286
+                         6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333
+                          4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15" />
+                                </svg>
+                            </a>
+                        </li>
+
+                        <li class="nav-item me-2">
+                            <a class="nav-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    class="bi bi-cart" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5
+                         0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 
+                         0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="row mt-5">
+        <aside class="col-lg-3 d-flex justify-content-center">
+            <nav class="nav">
+                <div class="nav nav-tabs flex-column" role="tablist">
+                    <a class="nav-item nav-link active" data-bs-toggle="tab" href="#user-account" role="tab"
+                        aria-selected="true"><i class="fas fa-user"></i>Account Details</a>
+                    <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-add-product" role="tab"
+                        aria-selected="false"><i class="fas fa-mobile-alt"></i>Products</a>
+                    <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-product-listing" role="tab"
+                        aria-selected="false"><i class="fas fa-list"></i>Product Listing</a>
+                    <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-orders" role="tab"
+                        aria-selected="false"><i class="fas fa-shopping-basket"></i>Orders</a>
+                    <a class="nav-item nav-link" data-bs-toggle="tab" href="#nav-address" role="tab"
+                        aria-selected="false"><i class="fas fa-home"></i>Addresses</a>
+                    <a class="nav-item nav-link" onclick="signOut();"><i class="fal fa-sign-out"></i>Logout</a>
+                </div>
+            </nav>
+        </aside>
+        <section class="mt-2 col-lg-8">
+            <div class="tab-content">
+                <div class="tab-pane fade glass" id="user-account" role="tabpanel">
+                    <h1 class="text-center p-5">User Account</h1>
+                    <!-- <div class="d-flex justify-content-between"> -->
+                    <form>
+                        <div class="row px-sm-4">
+                            <div class="col-lg-6 mb-3">
+                                <label for="firstName">First Name</label>
+                                <input class="form-control mb-3" type="text" id="firstName"/>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="lastName">Last Name</label>
+                                <input class="form-control mb-3" type="text" id="lastName"/>
+                            </div>
+                        </div>
+                        <div class="row px-sm-4">
+                            <div class="col-lg-6 mb-3">
+                                <label for="email">Email</label>
+                                <input class="form-control mb-3" type="email" id="email"/>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="mobile">Mobile</label>
+                                <input class="form-control mb-3" type="mobile" id="mobile"/>
+                            </div>
+                        </div>
+                        <div class="row px-sm-4">
+                            <div class="col-lg-12 mb-3">
+                                <label for="gender">Gender</label>
+                                <select class="form-select mb-3" id="gender" name="gender">
+                                    <option value="0">Select your Gender</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row px-sm-4">
+                            <div class="col-lg-6 mb-3">
+                                <label for="addressLine1">Address Line 1</label>
+                                <input class="form-control mb-3" type="text" id="addressLine1"/>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="addressLine2">Address Line 2</label>
+                                <input class="form-control mb-3" type="text" id="addressLine2"/>
+                            </div>
+                        </div>
+                        <div class="row px-sm-4">
+                            <div class="col-lg-6 mb-3">
+                                <label for="postalCode">Postal Code</label>
+                                <input class="form-control mb-3" type="text" id="postalCode"/>
+                            
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label for="city">City</label>
+                                <select class="form-select mb-3" id="city">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row p-4">
+                            <!-- Color -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="color">Color</label>
+                                <select class="form-select" id="color">
+                                    <option value="0">Select</option>
+                                    <option value="black">Black</option>
+                                    <option value="white">White</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="red">Red</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label>Add new Color</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Add new Colour" id="clr_in" />
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">+
+                                        Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row p-4">
+                            <!-- Price -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="price">Price ($)</label>
+                                <input type="number" class="form-control" id="price" placeholder="Enter price"
+                                    step="0.01" required>
+                            </div>
+
+                            <!-- Quantity -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" placeholder="Enter quantity"
+                                    min="1" required>
+                            </div>
+                        </div>
+                        <div class="row p-4">
+                            <div class="col-lg-4">
+                                <label>Image 1</label>
+                                <input id="img1" class="form-control b2" type="file" accept="image/*">
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label>Image 2</label>
+                                <input id="img2" class="form-control b2" type="file" accept="image/*">
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label>Image 3</label>
+                                <input id="img3" class="form-control b2" type="file" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div class="row p-4">
+                            <button type="submit" class="btn btn-primary" onclick="addProduct();">Add Product</button>
+                        </div>
+
+                    </form>
+                    <!-- </div> -->
+                </div>
+                <div class="tab-pane fade" id="nav-add-product" role="tabpanel">
+                    <h1 class="text-center p-5">Add Product</h1>
+                    <!-- <div class="d-flex justify-content-between"> -->
+                    <form>
+                        <div class="p-4 row">
+                            <div class="col-lg-4 mb-3">
+                                <label for="brand">Brand</label>
+                                <select class="form-select" id="brand" onchange="loadModels();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="category">Category</label>
+                                <select class="form-select" id="category" onchange="loadModels();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 mb-3">
+                                <label for="model">Model</label>
+                                <select class="form-select" id="model" onchange="loadModels();">
+                                    <option value="0">Select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row p-4">
+                            <div class="col-lg-12 mb-3">
+                                <label class="mb-1" for="title">Title</label>
+                                <input id="title" type="text" class="form-control" value="" required>
+                            </div>
+                        </div>
+
+                        <div class="row p-4">
+                            <div class="col-lg-12 mb-3">
+                                <label for="description">Description</label>
+                                <textarea class="form-control" placeholder="Enter product description" id="description"
+                                    cols="1" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="row p-4">
+                            <!-- Condition -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="condition">Condition</label>
+                                <select class="form-select" id="condition">
+                                    <option value="0">Select</option>
+                                    <option value="new">New</option>
+                                    <option value="used">Used</option>
+                                    <option value="refurbished">Refurbished</option>
+                                </select>
+                            </div>
+
+                            <!-- Storage -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="storage">Storage</label>
+                                <select class="form-select" id="storage">
+                                    <option value="0">Select</option>
+                                    <option value="64">64 GB</option>
+                                    <option value="128">128 GB</option>
+                                    <option value="256">256 GB</option>
+                                    <option value="512">512 GB</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="row p-4">
+                            <!-- Color -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="color">Color</label>
+                                <select class="form-select" id="color">
+                                    <option value="0">Select</option>
+                                    <option value="black">Black</option>
+                                    <option value="white">White</option>
+                                    <option value="blue">Blue</option>
+                                    <option value="red">Red</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 mb-3">
+                                <label>Add new Color</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Add new Colour" id="clr_in" />
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2">+
+                                        Add</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row p-4">
+                            <!-- Price -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="price">Price ($)</label>
+                                <input type="number" class="form-control" id="price" placeholder="Enter price"
+                                    step="0.01" required>
+                            </div>
+
+                            <!-- Quantity -->
+                            <div class="col-lg-6 mb-3">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" placeholder="Enter quantity"
+                                    min="1" required>
+                            </div>
+                        </div>
+                        <div class="row p-4">
+                            <div class="col-lg-4">
+                                <label>Image 1</label>
+                                <input id="img1" class="form-control b2" type="file" accept="image/*">
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label>Image 2</label>
+                                <input id="img2" class="form-control b2" type="file" accept="image/*">
+                            </div>
+
+                            <div class="col-lg-4">
+                                <label>Image 3</label>
+                                <input id="img3" class="form-control b2" type="file" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div class="row p-4">
+                            <button type="submit" class="btn btn-primary" onclick="addProduct();">Add Product</button>
+                        </div>
+
+                    </form>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="nav-product-listing" role="tabpanel">
+                <!-- Display the added products in cards -->
+                <h2 class="text-center mt-4">Added Products</h2>
+                <div id="products-container" class="row" style="height: 50vh;">
+            </div>
+        </section>
+
+    </div>
+
+
+
+
+
+    </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

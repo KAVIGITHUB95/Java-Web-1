@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KickCart - CheckOut</title>
+
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+        <!-- Icons -->
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Fonts and Styles -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    </head>
+    <body onload="loadHeader();">
+
+        <div id="page-loader" class="hidden">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Header -->
+        <div id="header"></div>
+
+        <!-- Checkout Section -->
+        <div class="container py-5">
+            <h2 class="mb-4">Checkout</h2>
+
+            <div class="row g-4">
+                <!-- Billing Details -->
+                <div class="col-md-7">
+                    <div class="card p-4 mb-4 shadow-sm">
+                        <h4 class="mb-3">Billing Details</h4>
+                        <form>
+
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input px-2" id="checkbox1">
+                                <label class="form-check-label" for="checkbox1">Same as your current address?</label>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="John" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="Doe" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Mobile</label>
+                                    <input type="tel" class="form-control" id="mobile" placeholder="+94..." required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Address Line 1</label>
+                                    <input type="text" class="form-control" id="lineOne" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Address Line 2</label>
+                                    <input type="text" class="form-control" id="lineTwo" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">City</label>
+                                    <select class="form-select" id="city" required>
+                                        <option value="">Select</option>
+                                        <option>Colombo</option>
+                                        <option>Kandy</option>
+                                        <option>Galle</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Postal Code</label>
+                                    <input type="text" class="form-control" id="postalCode" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="col-md-5">
+                    <div class="card p-4 shadow-sm">
+                        <h4 class="mb-3">Order Summary</h4>
+                        <table class="table">
+                            
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="checkout-tbody">
+                                <!-- Item Row Template -->
+                                <tr id="checkout-item">
+                                    <td id="checkout-product-title">Product Name</td>
+                                    <td class="text-end">
+                                        <span id="checkout-product-qty">0</span> × 
+                                        Rs. <span id="checkout-product-price">0.00</span>
+                                    </td>
+                                </tr>
+
+                                <!-- Subtotal Row -->
+                                <tr id="checkout-subtotal">
+                                    <td><strong>Subtotal</strong></td>
+                                    <td class="text-end">Rs. <span id="checkout-product-total-amount">0.00</span></td>
+                                </tr>
+
+                                <!-- Shipping Row -->
+                                <tr id="checkout-delivery">
+                                    <td><strong>Shipping</strong></td>
+                                    <td class="text-end">Rs. <span id="checkout-delivery-charges">0.00</span></td>
+                                </tr>
+
+                                <!-- Total Row -->
+                                <tr id="checkout-total">
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-end">Rs. <span id="checkout-order-total-amount">0.00</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <button class="btn btn-primary w-100" onclick="checkOut();">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+        <script src="assets/js/checkout.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/animation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

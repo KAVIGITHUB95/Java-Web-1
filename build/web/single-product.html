@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KickCart - An ecommerce for shoes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <!--        <link rel="stylesheet" href="assets\\css\\style.css" />-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+        <style>
+            .product-image {
+                max-width: 100%;
+                height: auto;
+                border-radius: 10px;
+            }
+
+            .price {
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #e63946;
+            }
+
+            .main-image {
+                width: 100%;
+                max-width: 500px;
+                border-radius: 10px;
+                object-fit: cover;
+            }
+
+            .thumbnail {
+                width: 80px;
+                height: 80px;
+                object-fit: cover;
+                border: 2px solid transparent;
+                cursor: pointer;
+                margin: 0 5px;
+            }
+
+            .thumbnail.active {
+                border-color: #0d6efd;
+            }
+        </style>
+    </head>
+
+    <body style="height: 100%;" onload="loadHeader();">
+        <div id="page-loader" class="hidden">
+            <div class="spinner"></div>
+        </div>
+        <div class="col-12 container-fluid">
+            
+            <div id="header"></div>
+
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6 text-center mb-3">
+                        <img id="mainImage" src="https://via.placeholder.com/500x500" alt="Product Image" class="main-image mb-3 glass">
+                        
+                        <div id="thumbnailContainer" class="d-flex justify-content-center flex-wrap">
+                            <!-- Thumbnails will go here -->
+                        </div>
+                    </div>
+                    <div class="col-md-6 ps-4" id="product-main">
+                        <h2 id="productTitle">Nike Air Max</h2>
+                        <p class="price" id="productPrice">$129.99</p>
+                        <p id="productDescription">Experience comfort like never before with Nike Air Max shoes, designed
+                            for style and performance.</p>
+                        <ul class="list-unstyled">
+                            <li><strong>Brand Name:</strong> <span id="brand-name">ABC</span></li>
+                            <li><strong>Color:</strong> <span id="color">ABC</span></li>
+                            <li><strong>Size:</strong> <span id="size">ABC</span></li>
+                        </ul>
+
+                        <!--                    <div class="mb-3">
+                                                <label for="sizeSelect" class="form-label">Size</label>
+                                                <select class="form-select" id="sizeSelect">
+                                                    <option value="">Select Size</option>
+                                                    <option value="7">7</option>
+                                                    <option value="8">8</option>
+                                                    <option value="9">9</option>
+                                                    <option value="10">10</option>
+                                                </select>
+                                            </div>-->
+
+                        <div class="mb-3" id="quantity-container">
+                            <label for="quantityInput" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantityInput" value="1" min="1">
+                        </div>
+
+                        <button class="btn btn-primary w-100 mb-3" id="add-to-cart-main">Add to Cart</button>
+<!--                        <button class="btn btn-primary w-100 mb-3" id="stripe-paynow">Pay Now</button>-->
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <section class="pt-5 mt-2 mt-sm-3 mt-lg-4 py-5 container custom-border-2" id="similar-product-main">
+                        <div class="d-flex align-items-center justify-content-between border-bottom pb-3 pb-md-4">
+                            <h2 class="px-4">Trending Products</h2>
+
+                            <div class="ms-3 nav">
+                                <a data-rr-ui-event-key="/shop/electronics" class="animate-underline px-0 py-2 nav-link"
+                                   href="/shop/electronics"><span class="animate-target">View all</span><i
+                                        class="ci-chevron-right fs-base ms-1"></i></a>
+                            </div>
+                        </div>
+                        <div class="g-4 row-cols-lg-4 pt-4 row row-cols-md-3 row-cols-2" id="product-container">
+                            <article id="similar-product">
+                                <div class="card shadow-sm rounded-4 mx-4 custom-border" style="width: 20rem" id="prod-card"
+                                     onmouseover="moveDown();">
+                                    <div class="position-relative p-3 pt-4">
+                                        <img src="" class="card-img-top rounded" alt="iPhone 14" height="200px" />
+                                        <div class="position-absolute top-0 end-0 mt-2 me-2 d-flex flex-column gap-2">
+                                            <button class="btn btn-light icon-btn shadow-sm">
+                                                <i class="bi bi-heart"></i>
+                                            </button>
+                                            <button class="btn btn-light icon-btn shadow-sm">
+                                                <i class="bi bi-arrow-clockwise"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body pt-2">
+                                        <div class="mb-1">
+                                            <span class="text-warning">★★★★★</span>
+                                            <span class="text-muted">(142)</span>
+                                        </div>
+                                        <h6>
+                                            <a href="#" class="text-decoration-none text-dark">Apple iPhone 14 128GB
+                                                White</a>
+                                        </h6>
+                                        <div class="d-flex justify-content-between align-items-center my-3">
+                                            <h5 class="mb-0">$899.00</h5>
+                                            <button class="btn btn-danger">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                     fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5
+                                                    0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 
+                                                    0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <ul class="list-unstyled small text-muted prod-down" id="prod-down">
+                                            <li class="d-flex justify-content-between"><span>Display:</span><span>6.1"
+                                                    XDR</span></li>
+                                            <li class="d-flex justify-content-between"><span>Capacity:</span><span>128
+                                                    GB</span></li>
+                                            <li class="d-flex justify-content-between"><span>Chip:</span><span>A15
+                                                    Bionic</span></li>
+                                            <li class="d-flex justify-content-between"><span>Camera:</span><span>12 + 12
+                                                    MP</span></li>
+                                            <li class="d-flex justify-content-between"><span>Weight:</span><span>172
+                                                    grams</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </article>
+
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div id="footer"></div>
+        <script src="assets/js/single-product.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/animation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>

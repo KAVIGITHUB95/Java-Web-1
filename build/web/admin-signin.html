@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <title>KickCart - Admin Sign In</title>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link rel="stylesheet" href="assets\\css\\style.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+
+
+        <style>
+            /* Initial styling for the navbar brand */
+            .navbar-brand {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* The underline effect and animation */
+            .navbar-brand::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 0;
+                height: 6px;
+                border-radius: 3px;
+                background-color: #0DCAF0; /* Info color for underline */
+                transition: width 0.3s ease;
+            }
+
+            .navbar-brand:hover::after {
+                width: 100%;
+            }
+        </style>
+    </head>
+
+    <body class="overflow-hidden" id="body" style="height: 100vh; background-image: url('images/4.png'); background-size: cover;">
+        <div id="page-loader" class="hidden">
+            <div class="spinner"></div>
+        </div>
+        <div class="col-12 container-fluid">
+            <nav class="navbar navbar-expand-xl mt-2 p-4">
+                <a class="navbar-brand mx-4 text-info" href="#">KickCart</a>
+            </nav>
+        </div>
+        <div class="row mt-2 py-5">
+            <div class="col-12 container-fluid overflow-hidden">
+                <div class="row d-flex justify-content-center">
+                    <aside class="col-xl-4 col-lg-6 d-flex flex-column justify-content-center" style="background: rgba(0, 0, 0, 0.6); border-radius: 12px; backdrop-filter: blur(4px);">
+                        <div class="d-flex flex-column justify-content-center">
+                            <h1 class="text-white fw-bold">Step into Style with KickCart</h1>
+                            <h5 class="mt-2 py-5 text-white">
+                                Join KickCart today and explore a curated collection of stylish, comfortable, and trendsetting footwear. Sign up now to unlock exclusive deals and personalized recommendations!
+                            
+                            </h5>
+                        </div>
+                    </aside>
+                    
+                    <div class="col-lg-6 offset-xl-1 mt-5 py-5">
+
+                        <div class="glass mt-3">
+                            <p class="text-danger" id="message"></p>
+                            <div class="col-8 p-4 mt-3 mb-3">
+                                <h4 class="pb-3 fw-bold">Sign In</h4>
+
+                                <label class="form-text">Email</label>
+                                <input type="email" name="email" class="form-control rounded-2 mb-3" placeholder="Email" id="email" autocomplete="off" />
+                                <label class="form-text">Password</label>
+                                <input type="password" name="password" class="form-control rounded-2 mb-3" placeholder="Password" id="password" autocomplete="off" />
+                                <div class="d-inline-flex gap-2 py-2">
+                                    <button class="btn text-white bg-success" onclick="adminSignIn();">
+                                        Sign In
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <script src="assets/js/admin-signin.js"></script>
+    </body>
+
+</html>

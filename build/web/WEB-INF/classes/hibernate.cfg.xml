@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/shoecomm?useSSL=false&amp;allowPublicKeyRetrieval=true</property>
+        
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">Gayan@02</property>
+        <property name="hibernate.show_sql">true</property>
+        
+        <mapping class="hibernate.Gender"/>
+        <mapping class="hibernate.UserStatus"/>
+        <mapping class="hibernate.User"/>
+        <mapping class="hibernate.City"/>
+        <mapping class="hibernate.Address"/>
+        <mapping class="hibernate.Brand"/>
+        <mapping class="hibernate.Model"/>
+        <mapping class="hibernate.Category"/>
+        <mapping class="hibernate.Status"/>
+        <mapping class="hibernate.Product"/>
+        <mapping class="hibernate.Size"/>
+        <mapping class="hibernate.Color"/>
+        <mapping class="hibernate.Stock"/>
+        <mapping class="hibernate.Cart"/>
+        <mapping class="hibernate.DeliveryType"/>
+        <mapping class="hibernate.Orders"/>
+        <mapping class="hibernate.OrderStatus"/>
+        <mapping class="hibernate.OrderItem"/>
+        <mapping class="hibernate.Admin"/>
+    </session-factory>
+
+
+</hibernate-configuration>
+

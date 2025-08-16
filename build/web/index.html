@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KickCart - An ecommerce for shoes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <!--        <link rel="stylesheet" href="assets\\css\\style.css" />-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+        <style>
+            html, body {
+
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
+            main {
+                flex: 1; /* pushes footer down */
+            }
+
+            #footer {
+                background: #f8f9fa;
+                padding: 20px;
+                text-align: center;
+            }
+
+            section {
+                /* background-color: #eaeaea;
+                margin-bottom: 10px;
+                padding: 10px; */
+            }
+
+            .right-sidebar {
+                width: 20%;
+                background-color: #f9f9f9;
+                padding: 10px;
+            }
+
+            .custom-border {
+                background: linear-gradient(to top, #e0eaf3 30%, #cfcef3) padding-box,
+                    linear-gradient(to left, #cfcef3, #e0eaf3) border-box;
+                border-radius: 20px;
+                border: 5px solid transparent;
+                margin: 0;
+            }
+
+            .category-menu {
+                background: #fff;
+                border-radius: 1rem;
+                padding: 1rem;
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            }
+
+            .category-item {
+                cursor: pointer;
+                transition: background 0.3s;
+                padding: 0.5rem;
+                border-radius: 0.5rem;
+            }
+
+            .category-item:hover {
+                background: #f1f1f1;
+            }
+
+            .category-submenu {
+                position: absolute;
+                top: 0;
+                left: 100%;
+                background: #fff;
+                padding: 1rem;
+                border-radius: 1rem;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 999;
+                min-width: 600px;
+            }
+
+            .category-item:hover .category-submenu {
+                display: flex;
+                gap: 2rem;
+            }
+
+            .slider-card {
+                background: #e0f0ff;
+                border-radius: 1.5rem;
+                overflow: hidden;
+                position: relative;
+                height: 100%;
+            }
+
+            .slider-content {
+                padding: 3rem;
+            }
+
+            .slider-content h2 {
+                font-weight: 700;
+            }
+
+            .slider-image {
+                position: absolute;
+                right: 2rem;
+                bottom: 0;
+                max-height: 100%;
+            }
+
+            .shop-btn {
+                background: #ff5a5f;
+                color: white;
+                border: none;
+                padding: 0.6rem 1.2rem;
+                border-radius: 0.6rem;
+                margin-top: 1rem;
+            }
+
+            .shop-btn:hover {
+                background: #e94848;
+            }
+
+            .submenu-image {
+                width: 200px;
+                border-radius: 1rem;
+                overflow: hidden;
+            }
+
+            .custom-border-2 {
+                background: linear-gradient(to top, #e0eaf3 30%, #cfcef3) padding-box,
+                    linear-gradient(to left, #cfcef3, #e0eaf3) border-box;
+                border-radius: 20px;
+                border: 5px solid transparent;
+
+            }
+
+            .carousel-caption {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.3); /* Full image overlay */
+                padding: 2rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+
+    <body style="height: 100%;" onload="indexOnloadFunctions()">
+        <div id="page-loader" class="hidden">
+            <div class="spinner"></div>
+        </div>
+        <div id="bottomAlert" class="alert-box">
+            <p id="alertMessage">This is an alert message.</p>
+            <button onclick="closeAlert()">Close</button>
+        </div>
+
+        <div class="col-12 container-fluid">
+            <div id="header"></div>
+            <main>
+                <div class="row">
+                    <div class="container py-5">
+                        <div class="row g-4">
+
+                            <div class="pt-5 mt-2 mt-sm-3 mt-lg-4 py-5">
+                                <div class="d-flex justify-content-center"> <!-- Center wrapper -->
+                                    <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" style="border-radius: 20rem; max-width: 80rem; width: 100%;">
+
+                                        <div class="carousel-inner">
+
+                                            <div class="carousel-item active position-relative">
+                                                <img src="images/2.png" alt="Product Image" class="d-block w-100 product-image">
+                                                <div class="carousel-caption">
+                                                    <div class="text-center text-white">
+                                                        <h1 class="fw-bold">Step into Style</h1>
+                                                        <p>Fresh Drops. Bold Looks. Discover the latest arrivals built for comfort, crafted for style.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="carousel-item position-relative">
+                                                <img src="images/3.png" alt="Product Image" class="d-block w-100 product-image">
+                                                <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
+                                                    <div class="glass text-overlay">
+                                                        <h1 class="fw-bold">Run Further, Feel Better</h1>
+                                                        <p class="text-light">Lightweight soles, breathable fabrics — made to move with you.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <section></section>
+                    <main>
+                        <section class="pt-5 mt-2 mt-sm-3 mt-lg-4 py-5 container">
+                            <div class="d-flex align-items-center justify-content-between border-bottom pb-3 pb-md-4">
+                                <h2 class="px-4">Trending Products</h2>
+
+                                <div class="ms-3 nav">
+                                    <a data-rr-ui-event-key="/shop/electronics" class="animate-underline px-0 py-2 nav-link"
+                                       href="/shop/electronics"><span class="animate-target">View all</span><i
+                                            class="ci-chevron-right fs-base ms-1"></i></a>
+                                </div>
+                            </div>
+                            <div class="g-4 row-cols-lg-4 pt-4 row row-cols-md-3 row-cols-2" id="product-container">
+                                <article>
+                                    <div class="card shadow-sm rounded-4 mx-4 custom-border" style="width: 20rem" id="prod-card"
+                                         onmouseover="moveDown();">
+                                        <div class="position-relative p-3 pt-4">
+                                            
+                                            <img src="" class="card-img-top rounded" alt="iPhone 14" height="200px" />
+                                            <div class="position-absolute top-0 end-0 mt-2 me-2 d-flex flex-column gap-2">
+                                                <button class="btn btn-light icon-btn shadow-sm">
+                                                    <i class="bi bi-heart"></i>
+                                                </button>
+                                                <button class="btn btn-light icon-btn shadow-sm">
+                                                    <i class="bi bi-arrow-clockwise"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-2">
+                                            <div class="mb-1">
+                                                <span class="text-warning">★★★★★</span>
+                                                <span class="text-muted">(142)</span>
+                                            </div>
+                                            <h6>
+                                                <a href="#" class="text-decoration-none text-dark">Apple iPhone 14 128GB
+                                                    White</a>
+                                            </h6>
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h5 class="mb-0">$899.00</h5>
+                                                <button class="btn btn-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                         fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5
+                                                        0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 
+                                                        0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <ul class="list-unstyled small text-muted prod-down" id="prod-down">
+                                                <li class="d-flex justify-content-between"><span>Display:</span><span>6.1"
+                                                        XDR</span></li>
+                                                <li class="d-flex justify-content-between"><span>Capacity:</span><span>128
+                                                        GB</span></li>
+                                                <li class="d-flex justify-content-between"><span>Chip:</span><span>A15
+                                                        Bionic</span></li>
+                                                <li class="d-flex justify-content-between"><span>Camera:</span><span>12 + 12
+                                                        MP</span></li>
+                                                <li class="d-flex justify-content-between"><span>Weight:</span><span>172
+                                                        grams</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </div>
+                        </section>
+
+                        <section class="sect pt-5 mt-5 mt-sm-5 mt-lg-5 py-5 container rounded-4">
+                            <h2>EPIC DEALS</h2>
+                            <div class="d-flex align-items-center justify-content-between border-bottom pb-3 pb-md-4">
+                            </div>
+                            <div class="g-4 row-cols-lg-4 pt-4 row row-cols-md-3 row-cols-2">
+                                <article>
+                                    <div class="card shadow-sm rounded-4 mx-4 custom-border" style="width: 20rem" id="prod-card"
+                                         onmouseover="moveDown();">
+                                        <div class="position-relative p-3 pt-4">
+                                            <img src="https://cartzilla-react.createx.studio/_next/image?url=%2Fimg%2Fshop%2Felectronics%2Fproduct%2Fgallery%2Fth01.png&w=384&q=75"
+                                                 class="card-img-top rounded" alt="iPhone 14" height="200px" />
+                                            <div class="position-absolute top-0 end-0 mt-2 me-2 d-flex flex-column gap-2">
+                                                <button class="btn btn-light icon-btn shadow-sm">
+                                                    <i class="bi bi-heart"></i>
+                                                </button>
+                                                <button class="btn btn-light icon-btn shadow-sm">
+                                                    <i class="bi bi-arrow-clockwise"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-2">
+                                            <div class="mb-1">
+                                                <span class="text-warning">★★★★★</span>
+                                                <span class="text-muted">(142)</span>
+                                            </div>
+                                            <h6>
+                                                <a href="#" class="text-decoration-none text-dark">Apple iPhone 14 128GB
+                                                    White</a>
+                                            </h6>
+                                            <div class="d-flex justify-content-between align-items-center my-3">
+                                                <h5 class="mb-0">$899.00</h5>
+                                                <button class="btn btn-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                         fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5
+                                                        0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 
+                                                        0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <ul class="list-unstyled small text-muted prod-down" id="prod-down">
+                                                <li class="d-flex justify-content-between"><span>Display:</span><span>6.1"
+                                                        XDR</span></li>
+                                                <li class="d-flex justify-content-between"><span>Capacity:</span><span>128
+                                                        GB</span></li>
+                                                <li class="d-flex justify-content-between"><span>Chip:</span><span>A15
+                                                        Bionic</span></li>
+                                                <li class="d-flex justify-content-between"><span>Camera:</span><span>12 + 12
+                                                        MP</span></li>
+                                                <li class="d-flex justify-content-between"><span>Weight:</span><span>172
+                                                        grams</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </article>
+
+                            </div>
+                            <div class="star star1"></div>
+                            <div class="star star2"></div>
+                            <div class="star star3"></div>
+                            <div class="star star4"></div>
+                            <div class="star star5"></div>
+                            <div class="star star6"></div>
+                            <div class="star star7"></div>
+                            <div class="star star8"></div>
+                        </section>
+                    </main>
+                </div>
+        </div>
+    </main>
+    <!-- <div class="right-sidebar">
+        <h2>Right Sidebar</h2>
+        <p>Ads, extras, or news.</p>
+    </div> -->
+    <div id="footer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/content-loader.js"></script>
+    <script src="assets/js/notification.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/animation.js"></script>
+</body>
+
+</html>
