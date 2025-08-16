@@ -106,7 +106,7 @@ public class VerifyPayments extends HttpServlet {
             return;
         }
 
-        String merchantSecret = "MTY0ODE1ODcyMTI4MDk3MTQ4OTgxNjg3MDU0ODQ5MzA1Mzc5MzA3NA==";
+        String merchantSecret = "";
         String merchantSecretMD5 = PayHere.generateMD5(merchantSecret).toUpperCase();
         String localHash = PayHere.generateMD5(
                 merchant_id + order_id + payhere_amount + payhere_currency
