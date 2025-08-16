@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KickCart - An ecommerce for shoes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <!--        <link rel="stylesheet" href="assets\\css\\style.css" />-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+        <style>
+
+        </style>
+    </head>
+
+    <body style="height: 100%;" onload="loadHeader(); loadCart();">
+        <div id="page-loader" class="hidden">
+            <div class="spinner"></div>
+        </div>
+        <div class="col-12 container-fluid">
+
+            <div id="header"></div>
+
+            <div class="container my-5">
+                <h2 class="mb-4 text-center">Your Shopping Cart</h2>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card shadow-sm rounded-4 p-4">
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Product</th>
+                                            <th>Color</th>
+                                            <th>Size</th>
+                                            <th>Unit Price</th>
+                                            <th>Quantity</th>
+                                            <th>Subtotal</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cart-body">
+                                        <!-- Cart items injected here via JS -->
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <a href="index.html" class="btn btn-primary rounded-pill mt-5">Continue Shopping</a>
+                                <div>
+                                    <h5>Total: <span id="cart-total" class="text-primary">$0.00</span></h5>
+                                    <a href="checkout.html" class="btn btn-primary rounded-pill mt-2">Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/js/cart.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+        <script src="assets/js/notification.js"></script>
+        <script src="assets/js/animation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+
+</html>

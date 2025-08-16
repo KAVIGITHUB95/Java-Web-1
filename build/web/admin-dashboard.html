@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>KickCart Admin Dashboard</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+        <!--        <link rel="stylesheet" href="assets\\css\\style.css" />-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+
+        <style>
+
+
+            html, body {
+                height: 100%;
+                margin: 0;
+            }
+
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                flex: 1;/* Full height */
+            }
+
+            main {
+                flex: 1; /* Pushes footer down */
+            }
+
+            #footer {
+                background: #111;
+                color: white;
+                padding: 20px 0;
+            }
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100vh;
+                width: 70px;
+                background-color: #212529;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 1rem;
+                z-index: 1000;
+            }
+
+            .sidebar a {
+                color: #fff;
+                padding: 1rem 0;
+                text-align: center;
+                width: 100%;
+                display: block;
+                transition: background 0.3s;
+            }
+
+            .sidebar a:hover {
+                background-color: #343a40;
+                color: #fff;
+            }
+
+            .main-content {
+                margin-left: 70px;
+                padding: 1rem;
+            }
+
+            .sidebar .bi {
+                font-size: 1.5rem;
+            }
+
+            .sidebar-tooltip {
+                font-size: 0.7rem;
+                color: #bbb;
+            }
+        </style>
+    </head>
+    <body class="overflow-x-hidden" style="height: 100vh;">
+        <div id="page-loader" class="hidden">
+            <div class="spinner"></div>
+        </div>
+        <!-- The Alert Box -->
+        <div id="bottomAlert" class="alert-box">
+            <p id="alertMessage">This is an alert message.</p>
+            <button onclick="closeAlert()">Close</button>
+        </div>
+        <div id="header"></div>
+        <div class="row mt-5 p-4">
+            <aside class="col-md-2 mb-3">
+                <div class="nav flex-column nav-pills" id="account-tabs" role="tablist" aria-orientation="vertical">
+                    <button class="nav-link active" id="overview-tab" data-bs-toggle="pill" data-bs-target="#overview"
+                            type="button" role="tab"><i class="bi bi-speedometer2"></i> Dashboard</button>
+                    <button class="nav-link" id="info-tab" data-bs-toggle="pill" data-bs-target="#info" type="button"
+                            role="tab"><i class="bi bi-box-seam"></i> Products</button>
+                    <button class="nav-link" id="orders-tab" data-bs-toggle="pill" data-bs-target="#orders"
+                            type="button" role="tab"><i class="bi bi-cart-check"></i> Orders</button>
+                    <button class="nav-link" id="addresses-tab" data-bs-toggle="pill" data-bs-target="#addresses"
+                            type="button" role="tab"><i class="bi bi-people"></i> Reports</button>
+                    <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security"
+                            type="button" role="tab"><i class="bi bi-gear"></i> Add Product</button>
+
+                    <button class="nav-link" id="updateproduct-tab" data-bs-toggle="pill" data-bs-target="#updateproduct"
+                            type="button" role="tab"><i class="bi bi-gear"></i> Update Product</button>
+                    <button class="nav-link" id="fields-tab" data-bs-toggle="pill" data-bs-target="#fields"
+                            type="button" role="tab"><i class="bi bi-gear"></i> Add Fields</button>
+                    <button class="nav-link" id="usermangement-tab" data-bs-toggle="pill" data-bs-target="#usermangement"
+                            type="button" role="tab"><i class="bi bi-gear"></i> Add Fields</button>
+                </div>
+            </aside>
+
+            <section class="col-md-10">
+                <div class="tab-content">
+                    <div class="tab-content" id="account-tabs-content">
+                        <!-- Profile Overview -->
+                        <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                            <div class="container-fluid">
+                                <div class="row g-4">
+                                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                                        <div class="card text-bg-primary shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Total Sales</h5>
+                                                <p class="card-text fs-4" id="totalSales">-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                                        <div class="card text-bg-success shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Total Orders</h5>
+                                                <p class="card-text fs-4" id="totalOrders">-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                                        <div class="card text-bg-warning shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Pending Deliveries</h5>
+                                                <p class="card-text fs-4" id="pendingDelivery">87</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-4 col-sm-6">
+                                        <div class="card text-bg-danger shadow-sm">
+                                            <div class="card-body">
+                                                <h5 class="card-title">Customers</h5>
+                                                <p class="card-text fs-4" id="noofCustomers">15</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Orders Table -->
+                                <div class="row mt-5">
+                                    <div class="col-12">
+                                        <div class="card shadow-sm">
+                                            <div class="card-header bg-light">
+                                                <h5 class="mb-0">Recent Orders</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Order ID</th>
+                                                            <th>Customer</th>
+                                                            <th>Status</th>
+                                                            <th>Total</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <!-- Rows will be dynamically injected here -->
+                                                    </tbody>
+                                                </table>
+
+                                                <!-- Pagination Controls -->
+                                                <nav aria-label="Orders Pagination" class="mt-3">
+                                                    <ul class="pagination justify-content-center" id="ordersPagination"></ul>
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                        <!-- Products Tab -->
+                        <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                            <div class="container-fluid">
+                                <h1 class="py-3">Products</h1>
+                                <div id="products-container">
+                                    <p class="text-muted">Loading your orders...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Orders Tab -->
+                        <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                            <div class="container-fluid">
+                                <h1 class="py-3">Customer Orders</h1>
+                                <div id="orders-container">
+                                    <p class="text-muted">Loading your orders...</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reports Tab -->
+                        <div class="tab-pane fade" id="addresses" role="tabpanel" aria-labelledby="addresses-tab">
+                            <div class="container-fluid">
+                                <h3>Reports</h3>
+                                <div class="row mt-5">
+                                    <div class="col-12">
+                                        <div class="card shadow-sm">
+                                            <div class="card-header bg-light">
+                                                <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                                    <h5 class="mb-0">User Management</h5>
+                                                    <button id="printBtn" class="btn btn-primary">Print</button>
+                                                </div>
+
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>User ID</th>
+                                                            <th>First Name</th>
+                                                            <th>Last Name</th>
+                                                            <th>Email</th>
+                                                            <th>Mobile</th>
+                                                            <th>Verification</th>
+                                                            <th>Gender</th>
+                                                            <th>Created At</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="userTableBody">
+                                                        <!-- rows will be dynamically added here -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-5">
+                                    <div class="col-12">
+                                        <div class="card shadow-sm">
+                                            <div class="card-header bg-light d-flex align-items-center justify-content-between">
+                                                <h5 class="mb-0">Products</h5>
+                                                <button id="printBtnproduct" class="btn btn-primary">Print</button>
+                                            </div>
+                                            <div class="card-body">
+                                                <table id="productTable" class="table table-hover table-bordered">
+                                                    <thead class="table-primary">
+                                                        <tr>
+                                                            <th>Product ID</th>
+                                                            <th>Title</th>
+                                                            <th>Price</th>
+                                                            <th>Stock Qty</th>
+                                                            <th>Colour</th>
+                                                            <th>Size</th>
+                                                            <th>Description</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="productTableBody">
+                                                        <!-- Product rows will be dynamically added here -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="tab-pane fade" id="security" role="tabpanel" aria-labelledby="security-tab">
+                            <div class="container-fluid">
+                                <h3>Add Product</h3>
+                                <p class="text-danger" id="message">Hello</p>
+
+                                <div class="account-details-form">
+                                    <div class="row g-3">
+
+                                        <div class="col-lg-6">
+                                            <label for="brand" class="form-label">Brand</label>
+                                            <select id="brand" class="form-select" onchange="loadModels();">
+                                                <option value="0">Select</option>
+                                                <!-- Populate options here -->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="model" class="form-label">Model</label>
+                                            <select id="model" class="form-select">
+                                                <option value="0">Select</option>
+                                                <!-- Populate options here -->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="category" class="form-label">Category</label>
+                                            <select id="category" class="form-select">
+                                                <option value="0">Select</option>
+                                                <!-- Populate options here -->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="size" class="form-label">Size</label>
+                                            <select id="size" class="form-select">
+                                                <option value="0">Select</option>
+                                            </select>
+                                        </div>
+
+                                        <!--                                        <div class="col-lg-4">
+                                                                                    <label for="product" class="form-label">Product</label>
+                                                                                    <select id="product" class="form-select">
+                                                                                        <option value="0">Select</option>
+                                                                                         Populate options here 
+                                                                                    </select>
+                                                                                </div>-->
+
+                                        <div class="col-12">
+                                            <label for="title" class="form-label">Title</label>
+                                            <input id="title" type="text" class="form-control" value="">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea id="description" class="form-control" rows="2"></textarea>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Price</label>
+                                                <input id="price" type="number" class="form-control" pattern="^\d+(\.\d{2})?$" placeholder="0.00">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Quantity</label>
+                                                <input id="qty" type="number" class="form-control" min="1" value="1">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="color" class="form-label">Color</label>
+                                            <select id="color" class="form-select">
+                                                <option value="0">Select</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="img1" class="form-label">Image 1</label>
+                                            <input id="img1" class="form-control" type="file" accept="image/*">
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="img2" class="form-label">Image 2</label>
+                                            <input id="img2" class="form-control" type="file" accept="image/*">
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="img3" class="form-label">Image 3</label>
+                                            <input id="img3" class="form-control" type="file" accept="image/*">
+                                        </div>
+
+                                        <div class="col-12 mt-3">
+                                            <button type="button" class="btn btn-primary w-100" onclick="saveProduct();">Add Product To Listing</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="tab-pane fade" id="updateproduct" role="tabpanel" aria-labelledby="updateproduct-tab">
+                            <div class="container-fluid">
+                                <h3>Save Product</h3>
+                                <p class="text-danger" id="message">Hello</p>
+
+                                <div class="account-details-form">
+                                    <div class="row g-3">
+
+                                        <div class="col-lg-6">
+                                            <label for="brand" class="form-label">Brand</label>
+                                            <select id="brand" class="form-select" onchange="loadModels();">
+                                                <option value="0">Select</option>
+                                                <!-- Populate options here -->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="model" class="form-label">Model</label>
+                                            <select id="model" class="form-select">
+                                                <option value="0">Select</option>
+                                                <!-- Populate options here -->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="category" class="form-label">Category</label>
+                                            <select id="category" class="form-select">
+                                                <option value="0">Select</option>
+                                                <!-- Populate options here -->
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <label for="size" class="form-label">Size</label>
+                                            <select id="size" class="form-select">
+                                                <option value="0">Select</option>
+                                            </select>
+                                        </div>
+
+                                        <!--                                        <div class="col-lg-4">
+                                                                                    <label for="product" class="form-label">Product</label>
+                                                                                    <select id="product" class="form-select">
+                                                                                        <option value="0">Select</option>
+                                                                                         Populate options here 
+                                                                                    </select>
+                                                                                </div>-->
+
+                                        <div class="col-12">
+                                            <label for="title" class="form-label">Title</label>
+                                            <input id="title" type="text" class="form-control" value="">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea id="description" class="form-control" rows="2"></textarea>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Price</label>
+                                                <input id="price" type="number" class="form-control" pattern="^\d+(\.\d{2})?$" placeholder="0.00">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="form-group">
+                                                <label>Quantity</label>
+                                                <input id="qty" type="number" class="form-control" min="1" value="1">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="color" class="form-label">Color</label>
+                                            <select id="color" class="form-select">
+                                                <option value="0">Select</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="img1" class="form-label">Image 1</label>
+                                            <input id="img1" class="form-control" type="file" accept="image/*">
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="img2" class="form-label">Image 2</label>
+                                            <input id="img2" class="form-control" type="file" accept="image/*">
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <label for="img3" class="form-label">Image 3</label>
+                                            <input id="img3" class="form-control" type="file" accept="image/*">
+                                        </div>
+
+                                        <div class="col-12 mt-3">
+                                            <button type="button" class="btn btn-primary w-100" onclick="saveProduct();">Add Product To Listing</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Reports Tab -->
+                        <div class="tab-pane fade" id="fields" role="tabpanel" aria-labelledby="fields-tab">
+                            <div class="container-fluid">
+                                <h3>Add Brand, Categories and Model</h3>
+                                <div>
+                                    <!-- Brand -->
+                                    <div class="col-6 mb-3">
+                                        <label for="brand" class="form-label">Brand</label>
+                                        <div class="input-group">
+                                            <input id="brand" type="text" class="form-control" placeholder="Enter brand name">
+                                            <button onclick="addData('brand')" class="btn btn-outline-primary">Add</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Category -->
+                                    <div class="col-6 mb-3">
+                                        <label for="category" class="form-label">Category</label>
+                                        <div class="input-group">
+                                            <input id="category" type="text" class="form-control" placeholder="Enter category name">
+                                            <button onclick="addData('category')" class="btn btn-outline-primary">Add</button>
+                                        </div>
+                                    </div>
+
+
+
+                                    <!-- Size -->
+                                    <div class="col-6 mb-3">
+                                        <label for="size" class="form-label">Size</label>
+                                        <div class="input-group">
+                                            <input id="size" type="text" class="form-control" placeholder="Enter size (S, M, L)">
+                                            <button onclick="addData('size')" class="btn btn-outline-primary">Add</button>
+                                        </div>
+                                    </div>
+
+                                    <!-- Color -->
+                                    <div class="col-6 mb-3">
+                                        <label for="color" class="form-label">Color</label>
+                                        <div class="input-group">
+                                            <input id="color" type="text" class="form-control" placeholder="Enter color">
+                                            <button onclick="addData('color')" class="btn btn-outline-primary">Add</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6 mb-3">
+                                        <label for="model" class="form-label">Model</label>
+                                        <div class="input-group">
+                                            <!-- Brand selection -->
+                                            <select id="modelBrand" class="form-select">
+                                                <option value="0">Select Brand</option>
+                                                <!-- Populate options dynamically -->
+                                            </select>
+                                            <!-- Model input -->
+                                            <input id="addModel" type="text" class="form-control" placeholder="Enter model name">
+                                            <button onclick="addModel()" type="button" class="btn btn-outline-primary">Add</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Bootstrap JS -->
+        <script>
+            document.getElementById('printBtn').addEventListener('click', () => {
+                const table = document.getElementById('userTableBody').closest('table');
+
+                const newWindow = window.open('', '', 'width=900,height=600');
+                newWindow.document.write(`
+        <html>
+        <head>
+            <title>User Management List</title>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                    background-color: #f8f9fa;
+                }
+                h2 {
+                    text-align: center;
+                    margin-bottom: 20px;
+                }
+                .print-card {
+                    background: white;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+                    padding: 20px;
+                }
+                table {
+                    border: 1px solid #dee2e6;
+                    border-radius: 6px;
+                    overflow: hidden;
+                }
+                thead {
+                    background-color: #f1f1f1;
+                }
+                th, td {
+                    text-align: center;
+                    vertical-align: middle;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="print-card">
+                <h2>User Management</h2>
+                ${table.outerHTML}
+            </div>
+        </body>
+        </html>
+    `);
+
+                newWindow.document.close();
+                newWindow.focus();
+
+                newWindow.print();
+                newWindow.close();
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/content-loader.js"></script>
+        <script src="assets/js/admin.js"></script>
+        <script src="assets/js/animation.js"></script>
+        <script src="assets/js/notification.js"></script>
+        <div id="footer"></div>
+    </body>
+
+</html>
+
+<!-- Update Product Modal -->
+<div class="modal fade" id="updateProductModal" tabindex="-1" aria-labelledby="updateProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content rounded-4 shadow-lg">
+
+            <!-- Modal Header -->
+            <div class="modal-header bg-primary text-white rounded-top-4">
+                <h5 class="modal-title fw-bold" id="updateProductModalLabel">Update Product</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="updateProductForm">
+
+
+
+                    <div class="row">
+                        <!-- Stock ID -->
+                        <div class="col-6 mb-3">
+                            <label for="update-stock-id" class="form-label fw-bold">Stock ID</label>
+                            <input type="number" step="0.01" class="form-control" id="update-stock-id" name="update-stock-id" disabled>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col-6 mb-3">
+                            <label for="update-status" class="form-label">Status</label>
+                            <select id="update-status" name="update-status" class="form-select">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Hidden Stock ID -->
+                    <input type="hidden" id="update-product-id" name="update-product-id">
+
+                    <!-- Product Title -->
+                    <div class="mb-3">
+                        <label for="update-title" class="form-label fw-bold">Product Title</label>
+                        <input type="text" class="form-control" id="update-title" name="title" required>
+                    </div>
+
+                    <div class="row">
+                        <!-- Price -->
+                        <div class="col-6 mb-3">
+                            <label for="update-price" class="form-label fw-bold">Price (Rs)</label>
+                            <input type="number" step="0.01" class="form-control" id="update-price" name="price" required>
+                        </div>
+
+                        <!-- Quantity -->
+                        <div class="col-6 mb-3">
+                            <label for="update-qty" class="form-label fw-bold">Stock Quantity</label>
+                            <input type="number" class="form-control" id="update-qty" name="qty" required>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <!-- Color -->
+                        <div class="col-6 mb-3">
+                            <label for="update-color" class="form-label">Color</label>
+                            <select id="update-color" name="color" class="form-select">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+
+                        <!-- Size -->
+                        <div class="col-6 mb-3">
+                            <label for="update-size" class="form-label">Size</label>
+                            <select id="update-size" name="size" class="form-select">
+                                <option value="0">Select</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="update-description" class="form-label fw-bold">Description</label>
+                        <textarea class="form-control" id="update-description" name="description" rows="10"></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <label for="update-img1" class="form-label">Image 1</label>
+                            <input id="update-img1" class="form-control" type="file" accept="image/*">
+                            <img id="update-img1-preview" src="" alt="Current Image 1" class="img-thumbnail mt-2" style="max-width: 100%; height: auto;">
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label for="update-img2" class="form-label">Image 2</label>
+                            <input id="update-img2" class="form-control" type="file" accept="image/*">
+                            <img id="update-img2-preview" src="" alt="Current Image 2" class="img-thumbnail mt-2" style="max-width: 100%; height: auto;">
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label for="update-img3" class="form-label">Image 3</label>
+                            <input id="update-img3" class="form-control" type="file" accept="image/*">
+                            <img id="update-img3-preview" src="" alt="Current Image 3" class="img-thumbnail mt-2" style="max-width: 100%; height: auto;">
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="updateProductForm" class="btn btn-primary rounded-pill" onclick="updateStock();">Save Changes</button>
+            </div>
+
+        </div>
+    </div>
+</div>
