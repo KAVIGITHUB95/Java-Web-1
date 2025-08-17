@@ -39,9 +39,9 @@ public class SignIn extends HttpServlet {
         System.out.println(password);
 
         if (email.isEmpty()) {
-            responseObject.addProperty("message", "Email can not be empty!");
+            responseObject.addProperty("message", "Email cannot be empty!");
         } else if (password.isEmpty()) {
-            responseObject.addProperty("message", "Password can not be empty!");
+            responseObject.addProperty("message", "Password cannot be empty!");
 
         } else {
 

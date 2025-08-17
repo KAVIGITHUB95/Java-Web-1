@@ -21,44 +21,59 @@ async function signIn() {
                 }
             }
     );
-    if(response.ok){ // success
+    if (response.ok) { // success
         const json = await response.json();
-        
-        if(json.status){ // if true
-            if (json.message==="1") {
-                window.location = "verify-account.html";
-            } else {
+
+        if (json.status) { // if true
+            if (json.message === "1") {
+                // Show success alert
+                await showAlert("Sign In Success! Redirecting to verify your account...");
+
+                // Redirect after 2 seconds
+                setTimeout(() => {
+                    
+                    window.location = "verify-account.html";
                 
-                window.location = "index.html";
+                }, 2000);
+
+            } else {
+                // Show success alert
+                await showAlert("Sign In Success!");
+
+                
+                // Redirect after 2 seconds
+                
+                setTimeout(() => {
+                    window.location = "index.html";
+                }, 2000);
             }
+        } else { // when status false
+            // Show error alert
             
-            document.getElementById("message").innerHTML=json.message;
-            
-        
-        }else{// when status false
-            document.getElementById("message").innerHTML= json.message;
+            showAlert(json.message || "Sign In Failed. Please try again later!");
         }
-        
-    }else{
-        document.getElementById("message").innerHTML="Sign In failed. Please try again";
+
+    } else {
+
+        showAlert(json.message || "Sign In failed. Please try again");
     }
 
 }
 
 async function authenticateUser() {
-    
+
     const response = await fetch("SignIn");
     if (response.ok) {
-        
+
         const json = await response.json();
-        
+
         if (json.message === "1") {
             window.location = "index.html";
         }
-    
-    
+
+
     } else {
-        
+
         alert(json.message || "Error authentication");
     }
 }

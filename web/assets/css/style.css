@@ -645,30 +645,84 @@ body.dark-theme .badge.bg-danger {
 }
 
 .alert-box {
-    content: '';
-    position: absolute;
-    background-color: #000000;
-    color: white;
-    text-decoration: none;
-    padding: 0.5em 1em;
-    border-radius: 100px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-    transform: translateY(-30px) rotate(24deg);
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%) translateY(30px);
+    min-width: 280px;
+    padding: 0.8em 1.2em;
+    
+    /* Darker Glassmorphism effect */
+    background: rgba(20, 20, 20, 0.6);   /* darker transparent background */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    border: 2px solid rgba(0, 123, 255, 0.7);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #fff;
+    font-weight: 500;
     opacity: 0;
-    transition: 200ms ease;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.alert-box:hover {
-    content: '️';
-    position: absolute;
-    height: 0;
-    width: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 10px solid #000000;
-    transform: translateY(0) rotate(24deg);
+/* Show state with glowing border */
+/* Show state */
+.alert-box.show {
     opacity: 1;
-    transition: 200ms ease;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    animation: glowPulse 6s infinite linear;
+}
+
+/* Aurora gradient glowing effect */
+@keyframes glowPulse {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 183, 255, 0.7),
+                    0 0 30px rgba(0, 255, 183, 0.6),
+                    0 0 45px rgba(255, 0, 183, 0.5);
+        border: 2px solid rgba(0, 183, 255, 0.9);
+    }
+    33% {
+        box-shadow: 0 0 15px rgba(255, 0, 183, 0.7),
+                    0 0 30px rgba(255, 183, 0, 0.6),
+                    0 0 45px rgba(0, 183, 255, 0.5);
+        border: 2px solid rgba(255, 0, 183, 0.9);
+    }
+    66% {
+        box-shadow: 0 0 15px rgba(0, 255, 183, 0.7),
+                    0 0 30px rgba(183, 0, 255, 0.6),
+                    0 0 45px rgba(255, 0, 183, 0.5);
+        border: 2px solid rgba(0, 255, 183, 0.9);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(0, 183, 255, 0.7),
+                    0 0 30px rgba(0, 255, 183, 0.6),
+                    0 0 45px rgba(255, 0, 183, 0.5);
+        border: 2px solid rgba(0, 183, 255, 0.9);
+    }
+}
+
+.alert-box button {
+    margin-left: 12px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.alert-box button:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.1);
 }
 
 /* Tooltip container for nav icons */
