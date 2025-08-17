@@ -5,49 +5,69 @@ window.addEventListener("load", function () {
     animationend();
 });
 
-function loadHeader() {
-    
+async function loadHeader() {
     animationstart();
-    const data = `<nav class="navbar navbar-expand-xl mt-2 p-4">
-                <a class="navbar-brand mx-4 text-info" href="index.html">KickCart</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 ps-4">
-                        <hr>
+    const response = await fetch("CheckUser", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
 
-                        <li class="nav-item me-2 sign-links"><a class="nav-link text-underline" href="signin.html">Sign In</a></li>
-                        <li class="nav-item me-2 sign-links"><a class="nav-link text-underline" href="signup.html">Sign Up</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Men</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Women</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Sneakers</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Sandals & Slippers</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Running & Sports</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Formal</a></li>
-                        <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Kids</a></li>
+    const data = `
+        <nav class="navbar navbar-expand-xl mt-2 p-4">
+            <a class="navbar-brand mx-4 text-info" href="index.html">KickCart</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                        <hr>
-                    </ul>
-                    <ul class="navbar-nav ms-auto d-none d-xl-flex">
-                        <li class="nav-item me-2"><a class="nav-link popup1" href="search.html" data-tooltip="Search"><i class="bi bi-search fs-4"></i></a></li>
-                        <li class="nav-item me-2"><a class="nav-link popup1" href="user-account.html" data-tooltip="Account"><i class="bi bi-person-circle fs-4"></i></a></li>
-                        <li class="nav-item me-2"><a class="nav-link popup1" href="cart.html" data-tooltip="Cart"><i class="bi bi-cart fs-4"></i></a></li>
-                    </ul>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                <ul class="navbar-nav justify-content-center flex-grow-1 ps-4">
+                    <hr>
+                    <li class="nav-item me-2 sign-links"><a class="nav-link text-underline" href="signin.html">Sign In</a></li>
+                    <li class="nav-item me-2 sign-links"><a class="nav-link text-underline" href="signup.html">Sign Up</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Men</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Women</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Sneakers</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Sandals & Slippers</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Running & Sports</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Formal</a></li>
+                    <li class="nav-item me-2"><a class="nav-link text-underline" href="#">Kids</a></li>
+                    <hr>
+                </ul>
 
-                    <ul class="navbar-nav ms-auto d-xl-none p-4">
-                        <li class="nav-item me-2"><a class="nav-link" href="search.html">Search <i class="bi bi-search"></i></a></li>
-                        <li class="nav-item me-2"><a class="nav-link" href="user-account.html">My Account <i class="bi bi-person-circle"></i></a></li>
-                        <li class="nav-item me-2"><a class="nav-link" href="cart.html">Cart <i class="bi bi-cart"></i></a></li>
-                    </ul>
-                </div>
-            </nav>`;
-    document.getElementById("header").innerHTML = data;
+                <ul class="navbar-nav ms-auto d-none d-xl-flex">
+                    <li class="nav-item me-2"><a class="nav-link popup1" href="search.html" data-tooltip="Search"><i class="bi bi-search fs-4"></i></a></li>
+                    <li class="nav-item me-2"><a class="nav-link popup1" href="user-account.html" data-tooltip="Account"><i class="bi bi-person-circle fs-4"></i></a></li>
+                    <li class="nav-item me-2"><a class="nav-link popup1" href="cart.html" data-tooltip="Cart"><i class="bi bi-cart fs-4"></i></a></li>
+                </ul>
 
-    // Hide Sign In/Sign Up if cookie exists
-    if (document.cookie.includes("email") || document.cookie.includes("authToken=")) {
-        document.querySelectorAll(".sign-links").forEach(el => el.style.display = "none");
+                <ul class="navbar-nav ms-auto d-xl-none p-4">
+                    <li class="nav-item me-2"><a class="nav-link" href="search.html">Search <i class="bi bi-search"></i></a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="user-account.html">My Account <i class="bi bi-person-circle"></i></a></li>
+                    <li class="nav-item me-2"><a class="nav-link" href="cart.html">Cart <i class="bi bi-cart"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    `;
+
+    if (response.ok) {
+        const json = await response.json();
+        document.getElementById("header").innerHTML = data;
+
+        if (json.status) {
+            // Hide sign in/up if session valid
+            document.querySelectorAll(".sign-links").forEach(el => el.style.display = "none");
+            console.log("Cookie check:", json.message);
+        } else {
+            // Show sign in/up
+            document.querySelectorAll(".sign-links").forEach(el => el.style.display = "block");
+            console.log("No cookie:", json.message);
+        }
+    } else {
+        // fallback if fetch fails
+        document.getElementById("header").innerHTML = data;
     }
 
     animationend();

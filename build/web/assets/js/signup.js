@@ -56,7 +56,7 @@ async function signUp(){
         const json = await response.json();
         
         if(json.status){ // if true
-            alert(json.message);
+            await showAlert(json.message || "Registration is successful!");
             window.location = "verify-account.html";
         }else{// when status false
             // custom message

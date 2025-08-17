@@ -16,15 +16,22 @@ function showAlert(message) {
     const alertBox = document.getElementById("bottomAlert");
     const alertMessage = document.getElementById("alertMessage");
 
-    alertMessage.innerText = message; // Set the message in the alert box
-    alertBox.style.display = "block"; // Show the alert
+    alertMessage.innerText = message;
+    alertBox.classList.add("show");
 
-    // Automatically close the alert after 5 seconds
-    setTimeout(closeAlert, 1500);
+    // Automatically close after 1.5s
+    setTimeout(() => {
+        closeAlert();
+    
+    }, 6000);
+
 }
 
 // Function to close the alert
+
 function closeAlert() {
     const alertBox = document.getElementById("bottomAlert");
-    alertBox.style.display = "none"; // Hide the alert
+    
+    alertBox.classList.remove("show");
+
 }
