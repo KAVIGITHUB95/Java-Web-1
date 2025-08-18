@@ -56,16 +56,16 @@ async function signUp(){
         const json = await response.json();
         
         if(json.status){ // if true
-            await showAlert(json.message || "Registration is successful!");
+            await showAlert(json.message || "Registration is successful!", true);
             window.location = "verify-account.html";
         }else{// when status false
             // custom message
-            alert(json.message);
             
+            await showAlert(json.message || "Registration failed. Please try again", false);
         }
-        
     }else{
-        alert(json.message || "Registration failed. Please try again");
+        
+        await showAlert(json.message || "Registration failed. Please try again", false);
         
     }
 }

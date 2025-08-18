@@ -81,10 +81,10 @@ function loadNewArrivals(json) {
 
         const card = `
             <article>
-                <div class="card shadow-sm rounded-4 mx-2" style="width: 100%">
+                <div class="card shadow-sm rounded-4 mx-2 product-card" style="width: 100%">
                     <div class="position-relative p-3 pt-4">
                         <img src="product-images/${product.id}/image1.png"
-                             class="card-img-top rounded" alt="${product.title}" style="max-width: 80rem; width: 100%;"/>
+                             class="card-img-top rounded" alt="${product.title}" style="max-width: 80rem; width: 100%; height: 280px"/>
                         <div class="position-absolute top-0 end-0 mt-2 me-2 d-flex flex-column gap-2">
                             <button class="btn btn-light icon-btn shadow-sm">
                                 <i class="bi bi-heart"></i>
@@ -136,4 +136,5 @@ async function addToCart(stockId, qty) {
         alert(json.message);
         alert("Something went wrong. Try again!");
     }
+
 }

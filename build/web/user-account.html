@@ -8,33 +8,17 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
         <!--        <link rel="stylesheet" href="assets\\css\\style.css" />-->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
         <style>
-            .custom-border {
-                background: linear-gradient(to top, #e0eaf3 30%, #cfcef3) padding-box,
-                    linear-gradient(to left, #cfcef3, #e0eaf3) border-box;
-                border-radius: 20px;
-                border: 5px solid transparent;
-                margin: 0;
-            }
-
-            body {
-                display: flex;
-                flex-direction: column;
-                min-height: 100vh;
-            }
-
-            main {
-                flex: 1; /* pushes footer down */
-            }
 
             #footer {
                 background: #f8f9fa;
-                padding: 20px;
+/*                padding: 20px;*/
                 text-align: center;
             }
         </style>
@@ -50,153 +34,158 @@
             <p id="alertMessage">This is an alert message.</p>
             <button onclick="closeAlert()">Close</button>
         </div>
-        <div id="header"></div>
-        <main>
-            <div class="row mt-5 p-4">
-                <aside class="col-md-3 mb-3">
-                    <div class="nav flex-column nav-pills" id="account-tabs" role="tablist" aria-orientation="vertical">
-                        <button class="nav-link active" id="overview-tab" data-bs-toggle="pill" data-bs-target="#overview"
-                                type="button" role="tab">Profile Overview</button>
-                        <button class="nav-link" id="info-tab" data-bs-toggle="pill" data-bs-target="#info" type="button"
-                                role="tab">Personal Info</button>
-                        <button class="nav-link" id="orders-tab" data-bs-toggle="pill" data-bs-target="#orders"
-                                type="button" role="tab">Orders</button>
-                        <button class="nav-link" id="addresses-tab" data-bs-toggle="pill" data-bs-target="#addresses"
-                                type="button" role="tab">Addresses</button>
-                        <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security"
-                                type="button" role="tab">Security</button>
-                        <button class="btn btn-danger" data-bs-toggle="pill" type="button" onclick="signOut()">Sign Out</button>
-                    </div>
-                </aside>
-                <section class="col-md-8">
-                    <div class="tab-content">
-                        <div class="tab-content" id="account-tabs-content">
-                            <!-- Profile Overview -->
-                            <div class="tab-pane fade show active" id="overview" role="tabpanel">
-                                <h3 id="username"></h3>
 
-                                <span id="since"></span><br/>
-                                <span id="addressUL"></span>
-                                <span></span>
-                                <span></span>
-                            </div>
+        <div class="col-12 container-fluid">
+            <div id="header"></div>
+            <main style="max-height: 100rem; width: 100%;">
+                <div class="row mt-5 p-4">
+                    <aside class="col-md-3 mb-3">
+                        <div class="nav flex-column nav-pills" id="account-tabs" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active" id="overview-tab" data-bs-toggle="pill" data-bs-target="#overview"
+                                    type="button" role="tab">Profile Overview</button>
+                            <button class="nav-link" id="info-tab" data-bs-toggle="pill" data-bs-target="#info" type="button"
+                                    role="tab">Personal Info</button>
+                            <button class="nav-link" id="orders-tab" data-bs-toggle="pill" data-bs-target="#orders"
+                                    type="button" role="tab">Orders</button>
+                            <button class="nav-link" id="addresses-tab" data-bs-toggle="pill" data-bs-target="#addresses"
+                                    type="button" role="tab">Addresses</button>
+                            <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security"
+                                    type="button" role="tab">Security</button>
+                            <button class="btn btn-danger" data-bs-toggle="pill" type="button" onclick="signOut()">Sign Out</button>
+                        </div>
+                    </aside>
+                    <section class="col-md-8">
+                        <div class="tab-content">
+                            <div class="tab-content" id="account-tabs-content">
+                                <!-- Profile Overview -->
+                                <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                                    <h3 id="username"></h3>
 
-                            <!-- Personal Info -->
-                            <div class="tab-pane fade px-sm-4" id="info" role="tabpanel">
-                                <h1 class="py-3">User Information</h1>
-                                <!-- <div class="d-flex justify-content-between"> -->
-                                <form>
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="firstName">First Name</label>
-                                            <input class="form-control mb-3" type="text" id="firstName" />
-                                        </div>
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="lastName">Last Name</label>
-                                            <input class="form-control mb-3" type="text" id="lastName" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="email">Email</label>
-                                            <input class="form-control mb-3" type="email" id="email" />
-                                        </div>
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="mobile">Mobile</label>
-                                            <input class="form-control mb-3" type="mobile" id="mobile" />
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="gender">Gender</label>
-                                            <select class="form-select mb-3" id="gender" name="gender">
-                                                <option value="0">Select your Gender</option>
-                                            </select>
-                                        </div>
-<!--                                        <div class="col-lg-6 mb-3">
-                                            <label>Profile Image</label>
-                                            <input id="profile-image" class="form-control b2" type="file" accept="image/*">
-                                        </div>-->
-                                    </div>
-
-                                    <div class="row">
-                                        <button type="button" class="btn btn-primary" onclick="saveUser();">Save Details</button>
-                                    </div>
-
-                                </form>
-                                <!-- </div> -->
-                            </div>
-
-                            <!-- Orders -->
-                            <div class="tab-pane fade" id="orders" role="tabpanel">
-                                <h1 class="py-3">Your Orders</h1>
-                                <div id="orders-container">
-                                    <p class="text-muted">Loading your orders...</p>
+                                    <span id="since"></span><br/>
+                                    <span id="addressUL"></span>
+                                    <span></span>
+                                    <span></span>
                                 </div>
-                            </div>
 
-                            <!-- Addresses -->
-                            <div class="tab-pane fade" id="addresses" role="tabpanel">
-                                <h1 class="py-3">Saved Addresses</h1>
-                                <p>No addresses saved.</p>
+                                <!-- Personal Info -->
+                                <div class="tab-pane fade px-sm-4" id="info" role="tabpanel">
+                                    <h1 class="py-3">User Information</h1>
+                                    <!-- <div class="d-flex justify-content-between"> -->
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="firstName">First Name</label>
+                                                <input class="form-control mb-3" type="text" id="firstName" />
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="lastName">Last Name</label>
+                                                <input class="form-control mb-3" type="text" id="lastName" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="email">Email</label>
+                                                <input class="form-control mb-3" type="email" id="email" />
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="mobile">Mobile</label>
+                                                <input class="form-control mb-3" type="mobile" id="mobile" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="gender">Gender</label>
+                                                <select class="form-select mb-3" id="gender" name="gender">
+                                                    <option value="0">Select your Gender</option>
+                                                </select>
+                                            </div>
+                                            <!--                                        <div class="col-lg-6 mb-3">
+                                                                                        <label>Profile Image</label>
+                                                                                        <input id="profile-image" class="form-control b2" type="file" accept="image/*">
+                                                                                    </div>-->
+                                        </div>
 
-                                <form>
-                                    <div class="row px-sm-4">
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="lineOne">Address Line 1</label>
-                                            <input class="form-control mb-3" type="text" id="lineOne" />
-                                        </div>
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="lineTwo">Address Line 2</label>
-                                            <input class="form-control mb-3" type="text" id="lineTwo" />
-                                        </div>
-                                    </div>
-                                    <div class="row px-sm-4">
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="postalCode">Postal Code</label>
-                                            <input class="form-control mb-3" type="text" id="postalCode" />
+                                        <div class="row">
+                                            <button type="button" class="btn btn-primary" onclick="saveUser();">Save Details</button>
                                         </div>
 
-                                        <div class="col-lg-6 mb-3">
-                                            <label for="city">City</label>
-                                            <select class="form-select mb-3" id="city">
-                                                <option value="0">Select</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </form>
-                                <div class="row p-4">
-                                    <button type="button" class="btn btn-primary" onclick="saveAddress();">Save Details</button>
+                                    </form>
+                                    <!-- </div> -->
                                 </div>
-                            </div>
 
-                            <!-- Security -->
-                            <div class="tab-pane fade" id="security" role="tabpanel">
-                                <h1 class="py-3">Security Settings</h1>
+                                <!-- Orders -->
+                                <div class="tab-pane fade" id="orders" role="tabpanel">
+                                    <h1 class="py-3">Your Orders</h1>
+                                    <div id="orders-container">
+                                        <p class="text-muted">Loading your orders...</p>
+                                    </div>
+                                </div>
 
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="currentPassword" class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required minlength="8" maxlength="20" autocomplete="current-password" aria-label="Current Password">
+                                <!-- Addresses -->
+                                <div class="tab-pane fade" id="addresses" role="tabpanel">
+                                    <h1 class="py-3">Saved Addresses</h1>
+                                    <p>No addresses saved.</p>
+
+                                    <form>
+                                        <div class="row px-sm-4">
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="lineOne">Address Line 1</label>
+                                                <input class="form-control mb-3" type="text" id="lineOne" />
+                                            </div>
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="lineTwo">Address Line 2</label>
+                                                <input class="form-control mb-3" type="text" id="lineTwo" />
+                                            </div>
+                                        </div>
+                                        <div class="row px-sm-4">
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="postalCode">Postal Code</label>
+                                                <input class="form-control mb-3" type="text" id="postalCode" />
+                                            </div>
+
+                                            <div class="col-lg-6 mb-3">
+                                                <label for="city">City</label>
+                                                <select class="form-select mb-3" id="city">
+                                                    <option value="0">Select</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="row p-4">
+                                        <button type="button" class="btn btn-primary" onclick="saveAddress();">Save Details</button>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="password" class="form-label">New Password</label>
-                                        <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter your new password" required minlength="8" maxlength="20" autocomplete="new-password" aria-label="New Password">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
-                                        <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your new password" required minlength="8" maxlength="20" autocomplete="new-password" aria-label="Confirm Password">
-                                    </div>
-                                    <button type="button" class="btn btn-danger" onclick="savePassword();">Update Password</button>
-                                </form>
+                                </div>
+
+                                <!-- Security -->
+                                <div class="tab-pane fade" id="security" role="tabpanel">
+                                    <h1 class="py-3">Security Settings</h1>
+
+                                    <form>
+                                        <div class="mb-3">
+                                            <label for="currentPassword" class="form-label">Current Password</label>
+                                            <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Enter your current password" required minlength="8" maxlength="20" autocomplete="current-password" aria-label="Current Password">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">New Password</label>
+                                            <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter your new password" required minlength="8" maxlength="20" autocomplete="new-password" aria-label="New Password">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your new password" required minlength="8" maxlength="20" autocomplete="new-password" aria-label="Confirm Password">
+                                        </div>
+                                        <button type="button" class="btn btn-danger" onclick="savePassword();">Update Password</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-            </div>
-        </main>
-        <div id="footer"></div>
+                </div>
+            </main>
+
+        </div>
+        <div class="row" style="background-color: blue;"></div>
+        <div class="col-12 container-fluid m-" id="footer"></div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
         crossorigin="anonymous"></script>
