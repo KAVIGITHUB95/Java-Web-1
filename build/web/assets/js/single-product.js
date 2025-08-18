@@ -217,4 +217,6 @@ async function removeCartItem(stockId) {
         console.error("Error:", error);
         alert("An error occurred while removing the item.");
     }
+
+
 }

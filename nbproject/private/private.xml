@@ -5,17 +5,12 @@
             <url>web/index.html</url>
             <bookmark id="1">
                 <name/>
-                <line>169</line>
+                <line>80</line>
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Kavishka%20Jayawardana/Documents/NetBeansProjects/KickCart/web/assets/css/style.css</file>
-            <file>file:/C:/Users/Kavishka%20Jayawardana/Documents/NetBeansProjects/KickCart/web/index.html</file>
-            <file>file:/C:/Users/Kavishka%20Jayawardana/Documents/NetBeansProjects/KickCart/web/assets/js/animation.js</file>
-            <file>file:/C:/Users/Kavishka%20Jayawardana/Documents/NetBeansProjects/KickCart/web/test.html</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
